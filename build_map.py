@@ -12,6 +12,8 @@ floorplan = data(ASSETS / "maps/floorplan-source.png")
 display = data(ASSETS / "fonts/GoldCoasterDisplay-Black.ttf")
 regular = data(ASSETS / "fonts/GoldCoasterText-Regular.ttf")
 bold = data(ASSETS / "fonts/GoldCoasterText-Bold.ttf")
+heading = '''  <text class="display" x="140" y="164" font-size="116">Metstrade 2026</text>
+  <text x="140" y="252" font-size="48">Find Australia in Halls 3 &amp; 7</text>'''
 
 svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="2800" height="3160" viewBox="0 0 2800 3160" role="img" aria-labelledby="title description">
   <title id="title">Metstrade 2026 — Australia in Halls 3 and 7</title>
@@ -31,8 +33,7 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="2800" height="3160" vie
     </style>
   </defs>
   <rect width="2800" height="3160" fill="url(#brand)"/>
-  <text class="display" x="140" y="164" font-size="116">Metstrade 2026</text>
-  <text x="140" y="252" font-size="48">Find Australia in Halls 3 &amp; 7</text>
+{heading}
   <rect x="60" y="345" width="2680" height="2585" rx="56" fill="#FFF"/>
   <image x="60" y="365" width="2679" height="2523" clip-path="url(#map-panel)" href="data:image/png;base64,{floorplan}"/>
 
@@ -56,4 +57,10 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="2800" height="3160" vie
 
 output = ASSETS / "maps/metstrade-australia-2026.svg"
 output.write_text(svg)
-print(f"Built {output.name} with the original floorplan embedded.")
+# The webpage supplies its own heading. The downloadable/printed version
+# keeps the standalone heading, while the web preview starts at the map panel.
+web_svg = svg.replace('height="3160" viewBox="0 0 2800 3160"',
+                      'height="2835" viewBox="0 325 2800 2835"', 1).replace(heading, '')
+web_output = ASSETS / "maps/metstrade-australia-2026-web.svg"
+web_output.write_text(web_svg)
+print(f"Built {output.name} and {web_output.name} with the original floorplan embedded.")

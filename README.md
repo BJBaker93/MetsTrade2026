@@ -21,7 +21,7 @@ All text uses `#2B160E`. Cards follow the updated DockPro and Stella Marine refe
 - Images are in `assets/images/`, named for each business.
 - To use a video, replace a card's `<img>` in `index.html` (or change `build.py`) with `<video muted loop playsinline preload="metadata" poster="assets/images/dockpro.webp"><source src="assets/videos/dockpro.mp4" type="video/mp4"></video>`. The script plays only the active card’s video. Keep the same `.card-media` wrapper.
 - The footer follows the updated Frame 2914 reference: closing copy, a visible “Resources →” heading and three yellow buttons, with Invest Gold Coast / Metstrade 2026 at the bottom.
-- The delegate map button opens `map.html`. Its downloadable, self-contained SVG highlights the two Australian flags in Halls 3 and 7. The source floorplan's pixels, hall outlines, stands and labels are preserved. Run `python3 build_map.py` to regenerate the SVG from the bundled source image and fonts.
+- The delegate map button opens `map.html`. Its downloadable, self-contained SVG highlights the two Australian flags in Halls 3 and 7. The page uses a compact preview with no duplicate heading or extra section beneath the map; downloads and printing keep the standalone map heading. The source floorplan's pixels, hall outlines, stands and labels are preserved. Run `python3 build_map.py` to regenerate the SVG from the bundled source image and fonts.
 - PDF version and Invest Gold Coast remain placeholders. Give their anchors an `href`, then remove `aria-disabled="true"` and the `resource-placeholder` class when the URLs are supplied.
 - Fonts are the existing GoldCoaster Display and Text fonts from this computer.
 
