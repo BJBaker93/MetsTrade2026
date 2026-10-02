@@ -39,7 +39,6 @@ button, a[href] { touch-action: manipulation; }
 button:not(:disabled), a[href] { cursor: pointer; }
 .cursor-dot { position: fixed; top: 0; left: 0; width: clamp(12px, 1.111vw, 20px); height: clamp(12px, 1.111vw, 20px); border-radius: 50%; background: var(--yellow); pointer-events: none; z-index: 1000; opacity: 0; transition: opacity .12s linear; will-change: transform; }
 @media (hover: hover) and (pointer: fine) {
-  .has-cursor-dot, .has-cursor-dot * { cursor: none !important; }
   .has-cursor-dot .cursor-dot { opacity: 1; }
 }
 button:focus-visible, a:focus-visible { outline: 3px solid var(--ink); outline-offset: 5px; }
