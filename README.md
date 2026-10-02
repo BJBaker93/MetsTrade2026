@@ -12,6 +12,8 @@ Open http://127.0.0.1:8765. The site can also be opened directly from `index.htm
 
 The hero and resources follow Figma Frames 2912 and 2914. The eight businesses shuffle on every refresh. Desktop uses a pinned scroll deck that peels left. Mobile uses a looping swipe deck: intro, eight shuffled business cards, resources, then intro again, with no vertical scrolling. Copy scales to fit smaller phone screens. Next/previous buttons and left/right arrow keys also navigate. Reduced motion removes transitions on mobile and uses the regular card list on desktop.
 
+All text uses `#2B160E`. Website buttons stay visible throughout card transitions; on mobile, they sit below the contact details at the bottom right. Mouse users get the small yellow cursor dot with a smooth follow; touch input keeps the normal swipe controls.
+
 ## Copy and media
 
 - Edit `profiles.json`, then run `python3 build.py` to regenerate `index.html`.
