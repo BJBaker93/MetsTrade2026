@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
-  // Leave the native cursor visible and trail the dot clear of its hotspot.
+  // Leave the native cursor visible and let the dot follow its tip.
   const cursor = document.querySelector('.cursor-dot');
   if (!cursor) return;
   const mouse = matchMedia('(hover: hover) and (pointer: fine)');
@@ -36,8 +36,8 @@
 
   document.addEventListener('pointermove', event => {
     if (!mouse.matches || event.pointerType !== 'mouse') { hideCursor(); return; }
-    pointerX = event.clientX + 20;
-    pointerY = event.clientY + 20;
+    pointerX = event.clientX;
+    pointerY = event.clientY;
     if (!cursorVisible) {
       cursorX = pointerX;
       cursorY = pointerY;

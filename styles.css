@@ -120,16 +120,26 @@ h1 { font-family: GoldCoaster Display, Arial, sans-serif; font-weight: 900; font
 }
 .website-pill:hover { background: #f3f95a; box-shadow: 0 4px 18px #4b2f081a; }
 .resources-panel { position: relative; min-height: 92svh; display: flex; flex-direction: column; justify-content: center; padding: clamp(44px, 6svh, 100px) var(--page-gutter); margin: 100px calc(-1 * var(--page-gutter)) -70px; background: linear-gradient(180deg, var(--sea) 0%, var(--peach) 50%, var(--sunset) 100%); }
-.resources-content { width: 100%; display: flex; flex-direction: column; gap: clamp(40px, 8.5svh, 76px); }
+.resources-content { width: 100%; max-width: 940px; margin: 0 auto 60px; display: flex; flex-direction: column; gap: clamp(36px, 6.7svh, 60px); }
+.resources-overview { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 48px; }
+.delegation-info { display: flex; flex-direction: column; justify-content: space-between; gap: 28px; font-size: clamp(12px, .91vw, 14px); line-height: 1.16; }
+.delegation-contact { display: flex; flex-direction: column; gap: 8px; font-style: normal; }
+.leader-name { display: block; }
+.delegation-contact a { width: fit-content; max-width: 100%; overflow-wrap: anywhere; }
+.delegation-contact a:hover, .footer-meta a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.delegation-location { display: flex; flex: 1; flex-direction: column; justify-content: space-between; gap: 28px; }
+.delegation-event { width: fit-content; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+.delegation-venue { font-weight: 700; }
+.delegation-copy { display: flex; flex-direction: column; gap: 20px; font-size: clamp(15px, 1.17vw, 18px); line-height: 1.2; }
+.delegation-copy p { margin: 0; text-align: left; }
+.delegation-copy .mobile-footer-copy { display: none; }
 .resources-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 28px; }
 .resources-heading { flex: 0 0 auto; font-family: GoldCoaster Display, Arial, sans-serif; font-weight: 900; font-size: clamp(30px, 2.59vw, 40px); line-height: 1; white-space: nowrap; }
 .resources-heading span { font-family: GoldCoaster Text, Arial, sans-serif; font-weight: 700; }
 .footer-meta { position: absolute; left: 24px; right: 24px; bottom: clamp(28px, 7svh, 62px); display: flex; justify-content: center; gap: 36px; font-size: clamp(14px, 1.037vw, 16px); line-height: 1.2; }
-.closing-copy { max-width: 1120px; margin: 0 auto; text-align: center; font-size: clamp(20px, 2.075vw, 32px); line-height: 1.05; text-wrap: balance; }
 .resource-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; flex: 0 0 auto; gap: 14px; margin: 0; }
 .resource-actions a { display: inline-flex; align-items: center; justify-content: center; padding: 8px 16px; border-radius: 100px; background: var(--yellow); color: var(--ink); font-family: GoldCoaster Text, Arial, sans-serif; font-weight: 700; font-size: clamp(16px, 1.3vw, 20px); line-height: 1.2; text-align: center; }
 .resource-actions a[href]:hover { background: #f3f95a; box-shadow: 0 4px 18px #4b2f081a; }
-.resource-placeholder { cursor: default; }
 
 /* Scroll enhancement. The unenhanced page remains an ordinary, readable list. */
 .has-deck-motion .deck { height: var(--deck-height); }
@@ -143,7 +153,6 @@ h1 { font-family: GoldCoaster Display, Arial, sans-serif; font-weight: 900; font
 .arrow-button:disabled { opacity: .3; }
 .has-deck-motion .resources-panel { position: absolute; inset: 0; min-height: 0; height: 100%; padding-top: clamp(44px, 6svh, 100px); margin: 0; z-index: 0; }
 .resources-panel:focus { outline: none; }
-.has-deck-motion .resources-panel .closing-copy { max-width: min(1120px, 85%); font-size: clamp(20px, 2.075vw, 32px); }
 
 @media (min-width: 701px) and (max-aspect-ratio: 4/3) {
   .has-deck-motion .card-stack { aspect-ratio: auto; height: min(620px, calc(100% - 180px)); max-height: none; }
@@ -169,7 +178,6 @@ h1 { font-family: GoldCoaster Display, Arial, sans-serif; font-weight: 900; font
   .card-media { height: 210px; flex: 0 0 auto; border-radius: 25px; }
   .website-pill { font-size: 13px; padding: 6px 12px; }
   .resources-panel { padding: 56px 24px 28px; margin-top: 60px; margin-bottom: -40px; }
-  .closing-copy { font-size: 20px; line-height: 1.1; }
   .resource-actions { flex-direction: column; gap: 14px; margin: 0 auto; }
   .has-deck-motion .card-stack { width: calc(100% - 32px); height: calc(100% - 134px); max-height: none; aspect-ratio: auto; }
   .has-deck-motion .card-copy { padding: 22px 20px 18px; gap: 12px; }
@@ -184,7 +192,6 @@ h1 { font-family: GoldCoaster Display, Arial, sans-serif; font-weight: 900; font
   .deck-nav > p { min-width: 185px; font-size: 12px; }
   .arrow-button { width: 36px; height: 36px; font-size: 22px; }
   .has-deck-motion .resources-panel { padding: 38px 24px 28px; }
-  .has-deck-motion .resources-panel .closing-copy { max-width: none; font-size: 19px; line-height: 1.1; }
   .has-deck-motion .resource-actions { margin: 0 auto; }
 }
 @media (max-width: 700px) and (max-height: 760px) {
@@ -211,7 +218,9 @@ h1 { font-family: GoldCoaster Display, Arial, sans-serif; font-weight: 900; font
 .mobile-carousel .card-copy p, .mobile-carousel .contact address { font-size: calc(12px * var(--copy-fit, 1)); line-height: 1.1; }
 .mobile-carousel .card-copy h3 { font-size: calc(15px * var(--copy-fit, 1)); margin-bottom: calc(7px * var(--copy-fit, 1)); }
 .mobile-carousel .contact address { gap: calc(6px * var(--copy-fit, 1)); }
-.mobile-carousel .card-media { height: clamp(112px, 22svh, 186px); }
+.mobile-carousel .card-copy > .contact { margin-top: auto; }
+.mobile-carousel .card-media { height: var(--mobile-image-height, clamp(112px, 22svh, 186px)); }
+.mobile-carousel #safiery .card-media img { object-position: 50% 35%; }
 .mobile-carousel .deck-nav { display: flex; position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); gap: 14px; align-items: center; z-index: 3; }
 .mobile-carousel .hero { min-height: 0; display: flex; flex-direction: column; justify-content: center; padding: 32px 24px 84px; overflow: hidden; }
 .mobile-carousel .hero-content { margin: auto; }
@@ -219,22 +228,33 @@ h1 { font-family: GoldCoaster Display, Arial, sans-serif; font-weight: 900; font
 .mobile-carousel .hero-content > p { font-size: clamp(16px, 2.3svh, 20px); line-height: 1.1; margin-top: 30px; }
 .mobile-carousel .hero .scroll-cue { bottom: 34px; font-size: 13px; gap: 10px; }
 .mobile-carousel .resources-panel { min-height: 0; margin: 0; padding: 28px 24px 66px; overflow: hidden; }
-.mobile-carousel .resources-content { gap: 48px; }
-.mobile-carousel .resources-row { flex-direction: column; gap: 22px; }
-.mobile-carousel .resources-heading { font-size: 26px; }
+.mobile-carousel .resources-content { gap: 26px; margin: 0 auto; }
+.mobile-carousel .resources-overview { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+.mobile-carousel .delegation-info { display: contents; font-size: 13px; }
+.mobile-carousel .delegation-contact { order: 3; gap: 6px; font-size: 13px; line-height: 1.16; }
+.mobile-carousel .leader-name { display: inline; }
+.mobile-carousel .delegation-location { order: 1; display: flex; flex-direction: column; gap: 8px; font-size: 13px; line-height: 1.16; }
+.mobile-carousel .delegation-copy { order: 2; font-size: 14px; line-height: 1.2; }
+.mobile-carousel .delegation-copy .regional-copy, .mobile-carousel .delegation-copy .closing-copy { display: none; }
+.mobile-carousel .delegation-copy .mobile-footer-copy { display: block; }
+.mobile-carousel .resources-row { flex-direction: column; gap: 16px; }
+.mobile-carousel .resources-heading { font-size: 24px; }
 .mobile-carousel .footer-meta { bottom: 24px; gap: 22px; font-size: 12px; }
-.mobile-carousel .closing-copy { max-width: none; font-size: clamp(14px, 2.05svh, 19px); line-height: 1.16; }
-.mobile-carousel .resource-actions { flex-direction: column; gap: 18px; margin: 0; padding-top: 0; }
+.mobile-carousel .resource-actions { flex-direction: column; gap: 12px; margin: 0; padding-top: 0; }
 .mobile-carousel .resource-actions a { max-width: 100%; font-size: 13px; padding: 7px 14px; }
 @media (max-height: 760px) {
   .mobile-carousel .resources-panel { padding: 22px 22px 58px; }
-  .mobile-carousel .resources-content { gap: 36px; }
-  .mobile-carousel .resources-row { gap: 20px; }
+  .mobile-carousel .resources-content { gap: 24px; }
+  .mobile-carousel .resources-overview { gap: 16px; }
+  .mobile-carousel .delegation-info { font-size: 12px; }
+  .mobile-carousel .delegation-contact { gap: 5px; font-size: 12px; }
+  .mobile-carousel .delegation-location { font-size: 12px; }
+  .mobile-carousel .delegation-copy { font-size: 13px; }
+  .mobile-carousel .resources-row { gap: 14px; }
   .mobile-carousel .resources-heading { font-size: 24px; }
-  .mobile-carousel .resource-actions { gap: 16px; }
+  .mobile-carousel .resource-actions { gap: 10px; }
   .mobile-carousel .resource-actions a { font-size: 13px; padding: 6px 14px; }
   .mobile-carousel .footer-meta { bottom: 20px; }
-  .mobile-carousel .card-media { height: 112px; }
   .mobile-carousel .card-copy { padding: 0 0 calc(12px * var(--copy-fit, 1)); gap: calc(10px * var(--copy-fit, 1)); }
   .mobile-carousel .card-title.large { font-size: calc(46px * var(--copy-fit, 1)); }
   .mobile-carousel .card-title.medium { font-size: calc(32px * var(--copy-fit, 1)); }
@@ -246,12 +266,16 @@ h1 { font-family: GoldCoaster Display, Arial, sans-serif; font-weight: 900; font
   .mobile-carousel .hero h1 { font-size: clamp(25px, 8.3vw, 28px); }
   .mobile-carousel .hero-content > p { font-size: 14px; line-height: 1.12; margin-top: 22px; }
   .mobile-carousel .hero .scroll-cue { bottom: 24px; font-size: 12px; }
-  .mobile-carousel .resources-panel { padding: 18px 20px 50px; }
-  .mobile-carousel .resources-content { gap: 26px; }
-  .mobile-carousel .closing-copy { font-size: 12px; line-height: 1.15; }
-  .mobile-carousel .resources-row { gap: 16px; }
+  .mobile-carousel .resources-panel { padding: 12px 20px 42px; }
+  .mobile-carousel .resources-content { gap: 14px; }
+  .mobile-carousel .resources-overview { gap: 10px; }
+  .mobile-carousel .delegation-info { font-size: 11px; gap: 10px; }
+  .mobile-carousel .delegation-contact { gap: 4px; font-size: 11px; }
+  .mobile-carousel .delegation-location { font-size: 11px; gap: 6px; }
+  .mobile-carousel .delegation-copy { font-size: 12px; line-height: 1.15; }
+  .mobile-carousel .resources-row { gap: 12px; }
   .mobile-carousel .resources-heading { font-size: 22px; }
-  .mobile-carousel .resource-actions { gap: 12px; }
+  .mobile-carousel .resource-actions { gap: 8px; }
   .mobile-carousel .resource-actions a { font-size: 12px; padding: 6px 12px; }
   .mobile-carousel .footer-meta { bottom: 18px; font-size: 10px; gap: 18px; }
 }

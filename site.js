@@ -6,11 +6,7 @@
   const cue = document.querySelector('.scroll-cue');
   const stack = document.querySelector('.card-stack');
   const cards = [...document.querySelectorAll('.business-card')];
-  // Shuffle once per page load, then use the same order for DOM, scrolling and navigation.
-  for (let i = cards.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [cards[i], cards[j]] = [cards[j], cards[i]];
-  }
+  // Keep the approved order in the HTML for scrolling and swipe navigation.
   cards.forEach((card, index) => {
     card.dataset.index = String(index);
     const image = card.querySelector('img');
@@ -136,6 +132,23 @@
     viewport = window.innerWidth;
     deck.style.setProperty('--stage-height', `${window.innerHeight}px`);
     cardWidth = stack.getBoundingClientRect().width;
+    // Increase the photo only where the unscaled copy leaves room. The cap
+    // keeps imagery secondary, and the contact block rests just above it.
+    cards.forEach(card => {
+      card.style.setProperty('--copy-fit', '1');
+      const copy = card.querySelector('.card-copy');
+      const media = card.querySelector('.card-media');
+      media.style.setProperty('--mobile-image-height', '112px');
+      const cardStyle = getComputedStyle(card);
+      const copyStyle = getComputedStyle(copy);
+      const children = [...copy.children];
+      const needed = children.reduce((height, child) => height + child.scrollHeight, 0)
+        + parseFloat(copyStyle.rowGap) * (children.length - 1)
+        + parseFloat(copyStyle.paddingTop) + parseFloat(copyStyle.paddingBottom);
+      const available = card.clientHeight - parseFloat(cardStyle.paddingTop) - parseFloat(cardStyle.paddingBottom);
+      const photoHeight = clamp(available - needed, 112, Math.min(220, window.innerHeight * .27));
+      media.style.setProperty('--mobile-image-height', `${Math.round(photoHeight)}px`);
+    });
     fitCardCopy();
     settleMobile(mobileIndex);
   }
