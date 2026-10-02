@@ -73,6 +73,7 @@ h1 { font-family: GoldCoaster Display, Arial, sans-serif; font-weight: 900; font
 .deck-nav { display: none; }
 .card-stack { width: 100%; max-width: 1320px; margin: auto; display: grid; gap: 70px; container-type: inline-size; }
 .business-card {
+  --url-inset: 24px;
   position: relative;
   container-type: inline-size;
   width: 100%;
@@ -109,14 +110,13 @@ h1 { font-family: GoldCoaster Display, Arial, sans-serif; font-weight: 900; font
 .contact a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .card-media { position: relative; min-width: 0; min-height: 0; border-radius: 4.72cqw; }
 .card-media > img, .card-media > video { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
-.website-pill { position: absolute; bottom: 4.72cqw; right: 4.72cqw; padding: .71cqw 2.82cqw; border-radius: 100px; background: var(--yellow); color: var(--ink); font-size: 2.115cqw; line-height: 1.2; font-weight: 700; white-space: nowrap; transition: box-shadow .2s ease, background .2s ease; }
+.website-pill { position: absolute; bottom: var(--url-inset); right: var(--url-inset); padding: 6px 16px; border-radius: 100px; background: var(--yellow); color: var(--ink); font-size: clamp(14px, 1.45vw, 20px); line-height: 1.2; font-weight: 700; white-space: nowrap; transition: box-shadow .2s ease, background .2s ease; }
 .card-size-large .card-intro { gap: calc(1.4cqw * var(--copy-fit, 1)); }
 @media (min-width: 701px) {
   .card-size-large { grid-template-columns: 35.4% minmax(0, 1fr); gap: 3%; padding: 3.05% 3.485%; }
   .card-size-large .card-copy { padding-right: calc(2.4cqw * var(--copy-fit, 1)); }
   .card-size-large .card-copy p, .card-size-large .contact address { font-size: calc(1.25cqw * var(--copy-fit, 1)); }
   .card-size-large .card-copy h3 { font-size: calc(1.875cqw * var(--copy-fit, 1)); }
-  .card-size-large .website-pill { right: 2.5cqw; bottom: 2.5cqw; font-size: 2.342cqw; }
 }
 .website-pill:hover { background: #f3f95a; box-shadow: 0 4px 18px #4b2f081a; }
 .resources-panel { position: relative; min-height: 92svh; display: flex; flex-direction: column; justify-content: center; padding: clamp(44px, 6svh, 100px) var(--page-gutter); margin: 100px calc(-1 * var(--page-gutter)) -70px; background: linear-gradient(180deg, var(--sea) 0%, var(--peach) 50%, var(--sunset) 100%); }
@@ -156,7 +156,7 @@ h1 { font-family: GoldCoaster Display, Arial, sans-serif; font-weight: 900; font
   .scroll-cue { bottom: 40px; }
   .deck-pin { padding-top: 40px; padding-bottom: 40px; }
   .card-stack { gap: 54px; }
-  .business-card { display: flex; flex-direction: column; aspect-ratio: auto; padding: 16px; gap: 0; border-radius: 32px; }
+  .business-card { --url-inset: 12px; display: flex; flex-direction: column; aspect-ratio: auto; padding: 16px; gap: 0; border-radius: 32px; }
   .card-copy { padding: 23px 20px; gap: 16px; flex: 1; }
   .card-intro { gap: 12px; }
   .card-title { width: 100%; }
@@ -167,7 +167,7 @@ h1 { font-family: GoldCoaster Display, Arial, sans-serif; font-weight: 900; font
   .card-copy h3 { font-size: 16px; margin-bottom: 8px; }
   .contact address { gap: 7px; }
   .card-media { height: 210px; flex: 0 0 auto; border-radius: 25px; }
-  .website-pill { font-size: 15px; right: 14px; bottom: 14px; padding: 7px 17px; }
+  .website-pill { font-size: 13px; padding: 6px 12px; }
   .resources-panel { padding: 56px 24px 28px; margin-top: 60px; margin-bottom: -40px; }
   .closing-copy { font-size: 20px; line-height: 1.1; }
   .resource-actions { flex-direction: column; gap: 14px; margin: 0 auto; }
@@ -212,7 +212,6 @@ h1 { font-family: GoldCoaster Display, Arial, sans-serif; font-weight: 900; font
 .mobile-carousel .card-copy h3 { font-size: calc(15px * var(--copy-fit, 1)); margin-bottom: calc(7px * var(--copy-fit, 1)); }
 .mobile-carousel .contact address { gap: calc(6px * var(--copy-fit, 1)); }
 .mobile-carousel .card-media { height: clamp(112px, 22svh, 186px); }
-.mobile-carousel .website-pill { font-size: 14px; padding: 7px 14px; }
 .mobile-carousel .deck-nav { display: flex; position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); gap: 14px; align-items: center; z-index: 3; }
 .mobile-carousel .hero { min-height: 0; display: flex; flex-direction: column; justify-content: center; padding: 32px 24px 84px; overflow: hidden; }
 .mobile-carousel .hero-content { margin: auto; }
