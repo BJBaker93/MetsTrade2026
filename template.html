@@ -9,8 +9,9 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/GoldCoasterDisplay-Black.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/GoldCoasterText-Regular.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="styles.css">
-  <script src="site.js" defer></script>
+  <link rel="stylesheet" href="styles.css?v=brandgc-v2">
+  <script src="site.js?v=brandgc-v2" defer></script>
+  <script src="cursor.js?v=brandgc-v2" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#resources">Skip to resources</a>
@@ -34,13 +35,18 @@
           <button class="arrow-button" id="next-card" aria-label="Next business"><span aria-hidden="true">→</span></button>
         </nav>
         <section class="resources-panel" id="resources" aria-labelledby="resources-title">
-          <p class="closing-copy">The businesses featured in this delegation represent the depth and diversity of the Gold Coast marine sector and are attending Metstrade 2026 to build international partnerships, explore new commercial opportunities, and strengthen connections across the global marine industry. We invite you to connect with our delegation and discover how the Gold Coast’s world-class expertise, infrastructure, and collaborative industry network can support your business and investment objectives.</p>
-          <h2 class="sr-only" id="resources-title">Resources</h2>
-          <nav class="resource-actions" aria-label="Resources">
-            <a class="resource-placeholder" aria-disabled="true">PDF version</a>
-            <a class="resource-placeholder" aria-disabled="true">MetsTrade Delegate Map</a>
-            <a class="resource-placeholder" aria-disabled="true">Australian Liaison Contact</a>
-          </nav>
+          <div class="resources-content">
+            <p class="closing-copy">The businesses featured in this delegation represent the depth and diversity of the Gold Coast marine sector and are attending Metstrade 2026 to build international partnerships, explore new commercial opportunities, and strengthen connections across the global marine industry. We invite you to connect with our delegation and discover how the Gold Coast’s world-class expertise, infrastructure, and collaborative industry network can support your business and investment objectives.</p>
+            <div class="resources-row">
+              <h2 class="resources-heading" id="resources-title">Resources <span aria-hidden="true">→</span></h2>
+              <nav class="resource-actions" aria-label="Resources">
+                <a class="resource-placeholder" aria-disabled="true">PDF version</a>
+                <a href="map.html">Metstrade Delegate Map</a>
+                <a class="resource-placeholder" aria-disabled="true">Invest Gold Coast</a>
+              </nav>
+            </div>
+          </div>
+          <div class="footer-meta"><span>Invest Gold Coast</span><span>Metstrade 2026</span></div>
         </section>
         <p class="sr-only" id="deck-announcement" aria-live="polite" aria-atomic="true"></p>
       </div>

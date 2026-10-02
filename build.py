@@ -11,7 +11,7 @@ for index, p in enumerate(profiles):
     title = "<br>".join(esc(line) for line in p["title"])
     title_class = "compact" if p.get("compactTitle") else "medium" if len(p["title"]) > 1 or p.get("mediumTitle") else "large"
     phone = "".join(c for c in p["phone"] if c.isdigit() or c == "+")
-    cards.append(f'''      <article class="business-card" id="{p['id']}" aria-labelledby="{p['id']}-title" data-index="{index}" data-name="{esc(p['name'])}">
+    cards.append(f'''      <article class="business-card card-size-{title_class}" id="{p['id']}" aria-labelledby="{p['id']}-title" data-index="{index}" data-name="{esc(p['name'])}">
         <div class="card-copy">
           <div class="card-intro">
             <h2 class="card-title {title_class}" id="{p['id']}-title">{title}</h2>

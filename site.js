@@ -119,11 +119,8 @@
     mobileTimer = setTimeout(() => settleMobile(mobileIndex), 230);
   }
 
-  function measureMobile() {
-    viewport = window.innerWidth;
-    deck.style.setProperty('--stage-height', `${window.innerHeight}px`);
-    cardWidth = stack.getBoundingClientRect().width;
-    // Fit the copy to each phone's available card height without vertical scrolling.
+  function fitCardCopy() {
+    // Keep the supplied copy within the padded frame at each screen size.
     cards.forEach(card => {
       const copy = card.querySelector('.card-copy');
       let scale = 1;
@@ -133,6 +130,13 @@
         card.style.setProperty('--copy-fit', Math.max(.5, scale).toFixed(3));
       }
     });
+  }
+
+  function measureMobile() {
+    viewport = window.innerWidth;
+    deck.style.setProperty('--stage-height', `${window.innerHeight}px`);
+    cardWidth = stack.getBoundingClientRect().width;
+    fitCardCopy();
     settleMobile(mobileIndex);
   }
 
@@ -222,6 +226,7 @@
     deck.style.setProperty('--deck-height', `${stageHeight + step * (cards.length + 0.6)}px`);
     start = deck.getBoundingClientRect().top + window.scrollY;
     cardWidth = stack.getBoundingClientRect().width;
+    fitCardCopy();
     if (oldProgress >= 0 && oldProgress <= cards.length + 0.6 && oldStep !== step) {
       window.scrollTo({ top: start + clamp(oldProgress, 0, cards.length + 0.6) * step, behavior: 'instant' });
     }
@@ -247,7 +252,6 @@
           card.removeAttribute('style');
           card.classList.add('carousel-card');
         });
-        cards.forEach(card => card.querySelector('.card-copy').append(card.querySelector('.website-pill')));
         cue.firstChild.nodeValue = 'Swipe to meet the businesses ';
         cue.querySelector('span').textContent = '→';
         window.scrollTo({ top: 0, behavior: 'instant' });
@@ -268,7 +272,6 @@
         card.inert = false;
         card.removeAttribute('aria-hidden');
       });
-      cards.forEach(card => card.querySelector('.card-media').append(card.querySelector('.website-pill')));
       cue.firstChild.nodeValue = 'Scroll to meet the businesses ';
       cue.querySelector('span').textContent = '↓';
       active = -1;
@@ -401,55 +404,6 @@
     });
   });
   observer.observe(stack, { attributes: true, attributeFilter: ['inert'], subtree: true });
-
-  // Use the brand's yellow cursor dot only with a mouse, never touch input.
-  const cursor = document.querySelector('.cursor-dot');
-  const mouse = matchMedia('(hover: hover) and (pointer: fine)');
-  let cursorFrame = 0;
-  let cursorTime = 0;
-  let cursorX = 0;
-  let cursorY = 0;
-  let pointerX = 0;
-  let pointerY = 0;
-  let cursorVisible = false;
-
-  function hideCursor() {
-    document.documentElement.classList.remove('has-cursor-dot');
-    cursorVisible = false;
-    if (cursorFrame) cancelAnimationFrame(cursorFrame);
-    cursorFrame = cursorTime = 0;
-  }
-
-  function drawCursor(time) {
-    cursorFrame = 0;
-    if (!cursorVisible) return;
-    const elapsed = cursorTime ? Math.min(time - cursorTime, 48) : 16;
-    cursorTime = time;
-    const follow = reduceMotion.matches ? 1 : 1 - Math.exp(-elapsed / 45);
-    cursorX += (pointerX - cursorX) * follow;
-    cursorY += (pointerY - cursorY) * follow;
-    const moving = Math.abs(pointerX - cursorX) + Math.abs(pointerY - cursorY) > 0.1;
-    if (!moving) { cursorX = pointerX; cursorY = pointerY; cursorTime = 0; }
-    cursor.style.transform = `translate3d(${cursorX}px,${cursorY}px,0) translate(-50%,-50%)`;
-    if (moving) cursorFrame = requestAnimationFrame(drawCursor);
-  }
-
-  document.addEventListener('pointermove', event => {
-    if (!mouse.matches || event.pointerType !== 'mouse') { hideCursor(); return; }
-    pointerX = event.clientX;
-    pointerY = event.clientY;
-    if (!cursorVisible) {
-      cursorX = pointerX;
-      cursorY = pointerY;
-      cursorVisible = true;
-      document.documentElement.classList.add('has-cursor-dot');
-    }
-    if (!cursorFrame) cursorFrame = requestAnimationFrame(drawCursor);
-  }, { passive: true });
-  document.addEventListener('pointerleave', hideCursor);
-  window.addEventListener('blur', hideCursor);
-  document.addEventListener('visibilitychange', () => { if (document.hidden) hideCursor(); });
-  mouse.addEventListener('change', hideCursor);
 
   configure();
   document.fonts.ready.then(() => { if (mobile) measureMobile(); else if (enabled) measure(); });
